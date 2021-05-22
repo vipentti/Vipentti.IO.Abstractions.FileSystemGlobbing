@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <!-- General -->
+    <PropertyGroup>
+        <LangVersion>9.0</LangVersion>
+        <Nullable>enable</Nullable>
+        <Features>strict</Features>
+    </PropertyGroup>
+
+    <!-- Build -->
+    <PropertyGroup>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+         <!-- Enable linter -->
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    </PropertyGroup>
+
+    <!-- Packaging -->
+    <PropertyGroup>
+        <!-- Enable packaging on a per-project basis. -->
+        <IsPackable>false</IsPackable>
+        <IsPublishable>false</IsPublishable>
+
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <Authors>Ville Penttinen</Authors>
+        <Copyright>Copyright © 2021 Ville Penttinen</Copyright>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    </PropertyGroup>
+</Project>

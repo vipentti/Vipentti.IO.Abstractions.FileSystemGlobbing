@@ -1,0 +1,24 @@
+[*.cs]
+dotnet_style_qualification_for_field = false:warning
+dotnet_style_qualification_for_property = false:warning
+dotnet_style_qualification_for_method = false:warning
+dotnet_style_qualification_for_event = false:warning
+dotnet_style_require_accessibility_modifiers = never:warning
+
+csharp_style_expression_bodied_methods = true:silent
+csharp_style_expression_bodied_properties = true:warning
+csharp_style_expression_bodied_indexers = true:warning
+csharp_style_expression_bodied_accessors = true:warning
+
+
+dotnet_naming_style.instance_field_style.required_prefix =
+
+dotnet_diagnostic.IDE0051.severity = none
+
+# Naming rule violation: The first word, must begin with a lower case character
+dotnet_diagnostic.IDE1006.severity = none
+
+dotnet_diagnostic.CA1822.severity = none
+dotnet_diagnostic.CA1050.severity = none
+dotnet_diagnostic.CA2211.severity = none
+dotnet_diagnostic.CS0414.severity = none
