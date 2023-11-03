@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Build Schema",
   "$ref": "#/definitions/build",
+  "title": "Build Schema",
   "definitions": {
     "build": {
       "type": "object",
@@ -17,12 +17,22 @@
           "type": "boolean",
           "description": "Indicates to continue a previously failed build attempt"
         },
+        "ForceReproducible": {
+          "type": "boolean",
+          "description": "Reproducible build"
+        },
         "GitHubRegistryApiKey": {
           "type": "string",
-          "default": "Secrets must be entered via 'nuke :secret [profile]'"
+          "description": "",
+          "default": "Secrets must be entered via 'nuke :secrets [profile]'"
+        },
+        "GitHubReleaseGitHubToken": {
+          "type": "string",
+          "default": "Secrets must be entered via 'nuke :secrets [profile]'"
         },
         "GitHubRepositoryOwner": {
-          "type": "string"
+          "type": "string",
+          "description": "Owner of the repository"
         },
         "Help": {
           "type": "boolean",
@@ -35,14 +45,18 @@
             "AppVeyor",
             "AzurePipelines",
             "Bamboo",
+            "Bitbucket",
             "Bitrise",
             "GitHubActions",
             "GitLab",
             "Jenkins",
+            "Rider",
             "SpaceAutomation",
             "TeamCity",
             "Terminal",
-            "TravisCI"
+            "TravisCI",
+            "VisualStudio",
+            "VSCode"
           ]
         },
         "IgnoreFailedSources": {
@@ -52,6 +66,10 @@
         "NoLogo": {
           "type": "boolean",
           "description": "Disables displaying the NUKE logo"
+        },
+        "Partition": {
+          "type": "string",
+          "description": "Partition to use on CI"
         },
         "Plan": {
           "type": "boolean",
@@ -66,7 +84,12 @@
         },
         "PublicNuGetApiKey": {
           "type": "string",
-          "default": "Secrets must be entered via 'nuke :secret [profile]'"
+          "description": "",
+          "default": "Secrets must be entered via 'nuke :secrets [profile]'"
+        },
+        "RemoteName": {
+          "type": "string",
+          "description": "Name of the remote - Default is 'origin'"
         },
         "Root": {
           "type": "string",
@@ -80,12 +103,17 @@
             "enum": [
               "Changelog",
               "Clean",
+              "CleanPackages",
+              "CleanTestResults",
               "Compile",
+              "CreateGitHubRelease",
+              "CreateRelease",
               "Pack",
               "Publish",
-              "Release",
               "Restore",
-              "Test"
+              "Test",
+              "ValidateFormat",
+              "ValidatePackages"
             ]
           }
         },
@@ -101,12 +129,17 @@
             "enum": [
               "Changelog",
               "Clean",
+              "CleanPackages",
+              "CleanTestResults",
               "Compile",
+              "CreateGitHubRelease",
+              "CreateRelease",
               "Pack",
               "Publish",
-              "Release",
               "Restore",
-              "Test"
+              "Test",
+              "ValidateFormat",
+              "ValidatePackages"
             ]
           }
         },

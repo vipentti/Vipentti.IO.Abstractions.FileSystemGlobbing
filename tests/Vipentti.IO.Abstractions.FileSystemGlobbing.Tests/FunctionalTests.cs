@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using FluentAssertions;
+using Microsoft.Extensions.FileSystemGlobbing;
+using System.Collections.Generic;
 using System.IO.Abstractions.TestingHelpers;
 using System.Linq;
-using FluentAssertions;
-using Microsoft.Extensions.FileSystemGlobbing;
 using Xunit;
 
 namespace Vipentti.IO.Abstractions.FileSystemGlobbing.Tests

@@ -18,6 +18,6 @@ namespace Vipentti.IO.Abstractions.FileSystemGlobbing
         public override string FullName => _fileSystemInfo.FullName;
 
         public override Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase ParentDirectory =>
-            new DirectoryInfoGlobbingWrapper(_fileSystem, _fileSystem.DirectoryInfo.FromDirectoryName(_fileSystemInfo.FullName));
+            new DirectoryInfoGlobbingWrapper(_fileSystem, _fileSystem.DirectoryInfo.New(_fileSystemInfo.FullName));
     }
 }

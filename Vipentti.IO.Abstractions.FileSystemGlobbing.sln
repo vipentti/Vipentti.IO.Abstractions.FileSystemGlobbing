@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.6.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7C868763-792B-49E4-ACDC-2CB462FAEBEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vipentti.IO.Abstractions.FileSystemGlobbing", "src\Vipentti.IO.Abstractions.FileSystemGlobbing\Vipentti.IO.Abstractions.FileSystemGlobbing.csproj", "{CD13D020-2285-4AB2-A6E0-DE73936CE084}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vipentti.IO.Abstractions.FileSystemGlobbing", "src\Vipentti.IO.Abstractions.FileSystemGlobbing\Vipentti.IO.Abstractions.FileSystemGlobbing.csproj", "{CD13D020-2285-4AB2-A6E0-DE73936CE084}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4C01D0F5-8A8D-4821-9090-A817A439141A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vipentti.IO.Abstractions.FileSystemGlobbing.Tests", "tests\Vipentti.IO.Abstractions.FileSystemGlobbing.Tests\Vipentti.IO.Abstractions.FileSystemGlobbing.Tests.csproj", "{E30ED146-F973-41D0-9CA3-6EB3AC2B3896}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vipentti.IO.Abstractions.FileSystemGlobbing.Tests", "tests\Vipentti.IO.Abstractions.FileSystemGlobbing.Tests\Vipentti.IO.Abstractions.FileSystemGlobbing.Tests.csproj", "{E30ED146-F973-41D0-9CA3-6EB3AC2B3896}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nuke-build", "tools\nuke-build\nuke-build.csproj", "{3A6A5D2D-1EF7-44E2-BEAF-F4DCABEC21E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{A37D6CE4-F612-41FD-B9EF-03DE2A16F4E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,12 +22,7 @@ Global
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3A6A5D2D-1EF7-44E2-BEAF-F4DCABEC21E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A6A5D2D-1EF7-44E2-BEAF-F4DCABEC21E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD13D020-2285-4AB2-A6E0-DE73936CE084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CD13D020-2285-4AB2-A6E0-DE73936CE084}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD13D020-2285-4AB2-A6E0-DE73936CE084}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -52,6 +47,15 @@ Global
 		{E30ED146-F973-41D0-9CA3-6EB3AC2B3896}.Release|x64.Build.0 = Release|Any CPU
 		{E30ED146-F973-41D0-9CA3-6EB3AC2B3896}.Release|x86.ActiveCfg = Release|Any CPU
 		{E30ED146-F973-41D0-9CA3-6EB3AC2B3896}.Release|x86.Build.0 = Release|Any CPU
+		{A37D6CE4-F612-41FD-B9EF-03DE2A16F4E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A37D6CE4-F612-41FD-B9EF-03DE2A16F4E2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A37D6CE4-F612-41FD-B9EF-03DE2A16F4E2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A37D6CE4-F612-41FD-B9EF-03DE2A16F4E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A37D6CE4-F612-41FD-B9EF-03DE2A16F4E2}.Release|x64.ActiveCfg = Release|Any CPU
+		{A37D6CE4-F612-41FD-B9EF-03DE2A16F4E2}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CD13D020-2285-4AB2-A6E0-DE73936CE084} = {7C868763-792B-49E4-ACDC-2CB462FAEBEF}
