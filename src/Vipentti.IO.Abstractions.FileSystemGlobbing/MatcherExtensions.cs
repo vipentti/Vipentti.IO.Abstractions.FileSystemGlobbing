@@ -1,8 +1,8 @@
-﻿using System.IO;
+﻿using Microsoft.Extensions.FileSystemGlobbing;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.IO.Abstractions;
-using Microsoft.Extensions.FileSystemGlobbing;
+using System.Linq;
 
 namespace Vipentti.IO.Abstractions.FileSystemGlobbing
 {
