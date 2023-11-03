@@ -7,8 +7,7 @@ using System.Collections.Generic;
 [GitHubActions(
     "ubuntu-latest",
     GitHubActionsImage.UbuntuLatest,
-    OnPushBranchesIgnore = new[] { MainBranch },
-    OnPullRequestBranches = new[] { MainBranch },
+    OnPullRequestBranches = new[] { MainBranch, DevelopBranch },
     PublishArtifacts = false,
     FetchDepth = 0, // fetch full history
     InvokedTargets = new[] { nameof(ITest.Test), nameof(ValidateFormat) }
@@ -16,8 +15,7 @@ using System.Collections.Generic;
 [GitHubActions(
     "windows-latest",
     GitHubActionsImage.WindowsLatest,
-    OnPushBranchesIgnore = new[] { MainBranch },
-    OnPullRequestBranches = new[] { MainBranch },
+    OnPullRequestBranches = new[] { MainBranch, DevelopBranch },
     PublishArtifacts = false,
     FetchDepth = 0, // fetch full history
     InvokedTargets = new[] { nameof(ITest.Test), nameof(ValidateFormat) }
@@ -25,8 +23,7 @@ using System.Collections.Generic;
 [GitHubActions(
     "macos-latest",
     GitHubActionsImage.MacOsLatest,
-    OnPushBranchesIgnore = new[] { MainBranch },
-    OnPullRequestBranches = new[] { MainBranch },
+    OnPullRequestBranches = new[] { MainBranch, DevelopBranch },
     PublishArtifacts = false,
     FetchDepth = 0, // fetch full history
     InvokedTargets = new[] { nameof(ITest.Test), nameof(ValidateFormat) }

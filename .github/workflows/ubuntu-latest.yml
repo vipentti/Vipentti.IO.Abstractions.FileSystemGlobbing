@@ -17,12 +17,10 @@
 name: ubuntu-latest
 
 on:
-  push:
-    branches-ignore:
-      - main
   pull_request:
     branches:
       - main
+      - develop
 
 jobs:
   ubuntu-latest:

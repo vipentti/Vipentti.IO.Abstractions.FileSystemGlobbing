@@ -17,12 +17,10 @@
 name: macos-latest
 
 on:
-  push:
-    branches-ignore:
-      - main
   pull_request:
     branches:
       - main
+      - develop
 
 jobs:
   macos-latest:
