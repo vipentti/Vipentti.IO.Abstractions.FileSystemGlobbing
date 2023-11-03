@@ -10,7 +10,7 @@ using System.Collections.Generic;
     OnPullRequestBranches = new[] { MainBranch, DevelopBranch },
     PublishArtifacts = false,
     FetchDepth = 0, // fetch full history
-    InvokedTargets = new[] { nameof(ITest.Test), nameof(ValidateFormat) }
+    InvokedTargets = new[] { nameof(ITest.Test), nameof(ValidateFormat), nameof(ValidatePackages) }
     )]
 [GitHubActions(
     "windows-latest",
@@ -18,7 +18,7 @@ using System.Collections.Generic;
     OnPullRequestBranches = new[] { MainBranch, DevelopBranch },
     PublishArtifacts = false,
     FetchDepth = 0, // fetch full history
-    InvokedTargets = new[] { nameof(ITest.Test), nameof(ValidateFormat) }
+    InvokedTargets = new[] { nameof(ITest.Test), nameof(ValidateFormat), nameof(ValidatePackages) }
     )]
 [GitHubActions(
     "macos-latest",
@@ -26,7 +26,7 @@ using System.Collections.Generic;
     OnPullRequestBranches = new[] { MainBranch, DevelopBranch },
     PublishArtifacts = false,
     FetchDepth = 0, // fetch full history
-    InvokedTargets = new[] { nameof(ITest.Test), nameof(ValidateFormat) }
+    InvokedTargets = new[] { nameof(ITest.Test), nameof(ValidateFormat), nameof(ValidatePackages) }
     )]
 [CustomGithubActions(
     "publish",
@@ -39,7 +39,7 @@ using System.Collections.Generic;
     PublishCondition = "${{ runner.os == 'Windows' }}",
     EmptyWorkflowTrigger = true,
     FetchDepth = 0, // fetch full history
-    InvokedTargets = new[] { nameof(ITest.Test), nameof(ValidateFormat), nameof(IPack.Pack) }
+    InvokedTargets = new[] { nameof(ITest.Test), nameof(ValidateFormat), nameof(IPack.Pack), nameof(ValidatePackages) }
     )]
 public partial class Build
 {

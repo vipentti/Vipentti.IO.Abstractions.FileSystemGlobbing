@@ -112,7 +112,8 @@
               "Publish",
               "Restore",
               "Test",
-              "ValidateFormat"
+              "ValidateFormat",
+              "ValidatePackages"
             ]
           }
         },
@@ -137,7 +138,8 @@
               "Publish",
               "Restore",
               "Test",
-              "ValidateFormat"
+              "ValidateFormat",
+              "ValidatePackages"
             ]
           }
         },

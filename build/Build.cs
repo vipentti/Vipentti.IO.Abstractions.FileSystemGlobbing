@@ -179,6 +179,25 @@ partial class Build : NukeBuild
                 .AddPair("Packages", PackagesDirectory.GlobFiles("*.nupkg").Count.ToString()));
         });
 
+    Target ValidatePackages => _ => _
+        .DependsOn<IPack>(x => x.Pack)
+        .After<IPack>(x => x.Pack)
+        .Executes(() =>
+        {
+            DotNetToolUpdate(_ => _
+                .SetGlobal(true)
+                .SetPackageName("Meziantou.Framework.NuGetPackageValidation.Tool")
+            );
+
+            static void ValidatePackage(AbsolutePath path)
+            {
+                ProcessTasks.StartProcess("meziantou.validate-nuget-package", arguments: path, logInvocation: true).AssertZeroExitCode();
+            }
+
+            PackagesDirectory.GlobFiles("*.nupkg")
+                .ForEach(ValidatePackage);
+        });
+
     string UseReproducibleBuild => ForceReproducible || IsServerBuild ? "true" : "false";
 
     Configure<DotNetRestoreSettings> IRestore.RestoreSettings => _ => _
