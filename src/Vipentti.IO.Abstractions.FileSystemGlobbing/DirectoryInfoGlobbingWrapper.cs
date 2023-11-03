@@ -38,8 +38,8 @@ namespace Vipentti.IO.Abstractions.FileSystemGlobbing
         public override string FullName => _directoryInfo.FullName;
 
         /// <inheritdoc />
-        public override Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase ParentDirectory =>
-            new DirectoryInfoGlobbingWrapper(_fileSystem, _directoryInfo.Parent);
+        public override Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase? ParentDirectory =>
+            _directoryInfo.Parent is null ? null : new DirectoryInfoGlobbingWrapper(_fileSystem, _directoryInfo.Parent);
 
         /// <inheritdoc />
         public override IEnumerable<Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileSystemInfoBase> EnumerateFileSystemInfos()
@@ -77,7 +77,7 @@ namespace Vipentti.IO.Abstractions.FileSystemGlobbing
             {
                 return new DirectoryInfoGlobbingWrapper(
                     _fileSystem,
-                    _fileSystem.DirectoryInfo.FromDirectoryName(Path.Combine(_directoryInfo.FullName, path)),
+                    _fileSystem.DirectoryInfo.New(Path.Combine(_directoryInfo.FullName, path)),
                     isParentPath);
             }
             else
@@ -96,6 +96,6 @@ namespace Vipentti.IO.Abstractions.FileSystemGlobbing
 
         /// <inheritdoc />
         public override Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoBase GetFile(string path)
-            => new FileInfoGlobbingWrapper(_fileSystem, _fileSystem.FileInfo.FromFileName(Path.Combine(FullName, path)));
+            => new FileInfoGlobbingWrapper(_fileSystem, _fileSystem.FileInfo.New(Path.Combine(FullName, path)));
     }
 }

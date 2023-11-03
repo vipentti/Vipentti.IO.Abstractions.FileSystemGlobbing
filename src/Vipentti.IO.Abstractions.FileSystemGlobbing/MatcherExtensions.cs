@@ -19,7 +19,7 @@ namespace Vipentti.IO.Abstractions.FileSystemGlobbing
         /// <param name="directoryPath">The root directory for the search</param>
         /// <returns>Always returns instance of <see cref="PatternMatchingResult" />, even if not files were matched</returns>
         public static PatternMatchingResult Execute(this Matcher matcher, IFileSystem fileSystem, string directoryPath) =>
-            Execute(matcher, fileSystem, fileSystem.DirectoryInfo.FromDirectoryName(directoryPath));
+            Execute(matcher, fileSystem, fileSystem.DirectoryInfo.New(directoryPath));
 
         /// <inheritdoc cref="Execute(Matcher, IFileSystem, string)"/>
         public static PatternMatchingResult Execute(this Matcher matcher, IFileSystem fileSystem, IDirectoryInfo directoryInfo) =>
@@ -29,10 +29,9 @@ namespace Vipentti.IO.Abstractions.FileSystemGlobbing
         public static IEnumerable<string> GetResultsInFullPath(this Matcher matcher, IFileSystem fileSystem, IDirectoryInfo directoryInfo)
         {
             var matches = Execute(matcher, fileSystem, directoryInfo).Files;
-            var result = matches
+            return matches
                 .Select(match => Path.GetFullPath(Path.Combine(directoryInfo.FullName, match.Path)))
                 .ToArray();
-            return result;
         }
 
         /// <summary>
@@ -43,6 +42,6 @@ namespace Vipentti.IO.Abstractions.FileSystemGlobbing
         /// <param name="directoryPath">The root directory for the search</param>
         /// <returns>Absolute file paths of all files matched. Empty enumerable if no files matched given patterns.</returns>
         public static IEnumerable<string> GetResultsInFullPath(this Matcher matcher, IFileSystem fileSystem, string directoryPath) =>
-            GetResultsInFullPath(matcher, fileSystem, fileSystem.DirectoryInfo.FromDirectoryName(directoryPath));
+            GetResultsInFullPath(matcher, fileSystem, fileSystem.DirectoryInfo.New(directoryPath));
     }
 }

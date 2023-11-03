@@ -12,6 +12,9 @@
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
          <!-- Enable linter -->
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+
+         <!-- Enable linter -->
+        <WarnOnPackingNonPackableProject>true</WarnOnPackingNonPackableProject>
     </PropertyGroup>
 
     <!-- Packaging -->
@@ -20,11 +23,15 @@
         <IsPackable>false</IsPackable>
         <IsPublishable>false</IsPublishable>
 
-        <IncludeSymbols>true</IncludeSymbols>
-        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <Authors>Ville Penttinen</Authors>
-        <Copyright>Copyright © 2021 Ville Penttinen</Copyright>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Copyright>Copyright © 2021-2023 Ville Penttinen</Copyright>
+        <PackageProjectUrl>https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+        <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
     </PropertyGroup>
 </Project>
