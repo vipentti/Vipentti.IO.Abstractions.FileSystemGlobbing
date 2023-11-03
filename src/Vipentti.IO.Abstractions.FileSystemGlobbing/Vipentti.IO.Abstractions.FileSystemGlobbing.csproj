@@ -13,6 +13,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageIcon>icon.png</PackageIcon>
     <EnablePackageValidation>true</EnablePackageValidation>
+    <PackageTags>filesystem;globbing</PackageTags>
 
     <!-- Recommended: Embed symbols containing Source Link in the main file (exe/dll) -->
     <DebugType>embedded</DebugType>
