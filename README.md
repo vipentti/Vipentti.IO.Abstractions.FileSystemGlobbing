@@ -43,4 +43,4 @@ namespace Example
 
 ## License
 
-MIT. See [LICENSE](./LICENSE).
+MIT. See [LICENSE](https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing/blob/main/LICENSE).
