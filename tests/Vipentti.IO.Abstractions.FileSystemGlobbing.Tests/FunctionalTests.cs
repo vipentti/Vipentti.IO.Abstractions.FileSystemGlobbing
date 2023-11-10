@@ -1,4 +1,8 @@
-﻿using FluentAssertions;
+﻿// Copyright 2021-2023 Ville Penttinen
+// Distributed under the MIT License.
+// https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing/blob/main/LICENSE
+
+using FluentAssertions;
 using Microsoft.Extensions.FileSystemGlobbing;
 using System.Collections.Generic;
 using System.IO.Abstractions.TestingHelpers;

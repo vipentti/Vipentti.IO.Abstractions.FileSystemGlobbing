@@ -1,4 +1,8 @@
-﻿using Nuke.Common.CI.GitHubActions;
+﻿// Copyright 2021-2023 Ville Penttinen
+// Distributed under the MIT License.
+// https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing/blob/main/LICENSE
+
+using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.CI.GitHubActions.Configuration;
 using Nuke.Common.Utilities;
 using Nuke.Components;
