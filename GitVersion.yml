@@ -1,4 +1,4 @@
-next-version: 1.0.1
+next-version: 1.0.2
 assembly-versioning-scheme: MajorMinorPatch
 assembly-file-versioning-scheme: MajorMinorPatchTag
 assembly-informational-format: '{SemVer}+{BranchName}.{ShortSha}'
