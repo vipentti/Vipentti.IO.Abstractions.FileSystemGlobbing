@@ -1,4 +1,8 @@
-﻿using System.Runtime.InteropServices;
+﻿// Copyright 2021-2023 Ville Penttinen
+// Distributed under the MIT License.
+// https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing/blob/main/LICENSE
+
+using System.Runtime.InteropServices;
 
 namespace Vipentti.IO.Abstractions.FileSystemGlobbing.Tests
 {
