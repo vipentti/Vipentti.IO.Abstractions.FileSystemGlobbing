@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [vNext]
 - Fix links in README
+- Make DirectoryInfoGlobbingWrapper internal
 
 ## [1.0.1] / 2023-11-03
 - Update dependencies and target frameworks

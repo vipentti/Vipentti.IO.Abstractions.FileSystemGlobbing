@@ -12,7 +12,7 @@ namespace Vipentti.IO.Abstractions.FileSystemGlobbing;
 /// <summary>
 /// Wraps <see cref="IDirectoryInfo" /> to be used with <see cref="Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase"/>
 /// </summary>
-public class DirectoryInfoGlobbingWrapper
+internal class DirectoryInfoGlobbingWrapper
     : Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
 {
     private readonly IFileSystem _fileSystem;
