@@ -52,8 +52,6 @@ public class FunctionalTests
 
         paths
             .Should()
-            .BeEquivalentTo(
-                new[] { "file_at_root", "nested/file", "nested/inside/nested/file", }
-            );
+            .BeEquivalentTo(new[] { "file_at_root", "nested/file", "nested/inside/nested/file", });
     }
 }

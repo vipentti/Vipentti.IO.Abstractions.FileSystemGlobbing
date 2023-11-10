@@ -34,8 +34,7 @@ internal class DirectoryInfoGlobbingWrapper
     )
     {
         _fileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem));
-        _directoryInfo =
-            directoryInfo ?? throw new ArgumentNullException(nameof(directoryInfo));
+        _directoryInfo = directoryInfo ?? throw new ArgumentNullException(nameof(directoryInfo));
         _isParentPath = isParentPath;
     }
 
