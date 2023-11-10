@@ -5,33 +5,22 @@
 #
 #     - To turn off auto-generation set:
 #
-#         [StandardPublishGitHubActions (AutoGenerate = false)]
+#         [GitHubActions (AutoGenerate = false)]
 #
 #     - To trigger manual generation invoke:
 #
-#         nuke --generate-configuration GitHubActions_publish --host GitHubActions
+#         nuke --generate-configuration GitHubActions_pull-request --host GitHubActions
 #
 # </auto-generated>
 # ------------------------------------------------------------------------------
 
-name: publish
+name: pull-request
 
 on:
-  push:
+  pull_request:
     branches:
       - main
-  workflow_dispatch: # Allow running the workflow manually from the GitHub UI
-
-permissions:
-  actions: write
-  checks: write
-  contents: write
-  deployments: write
-  issues: write
-  discussions: write
-  packages: write
-  pages: write
-  statuses: write
+      - develop
 
 jobs:
   windows-latest:
@@ -48,13 +37,8 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
-      - name: 'Run: Test, InstallLinters, Lint, Pack, ValidatePackages, Publish'
-        run: ./build.cmd Test InstallLinters Lint Pack ValidatePackages Publish
-        env:
-          NuGetApiKey: ${{ secrets.NUGET_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PackageOwner: ${{ vars.PACKAGE_OWNER }}
-          NuGetSource: ${{ vars.NUGET_SOURCE }}
+      - name: 'Run: Test, InstallLinters, Lint, ValidatePackages'
+        run: ./build.cmd Test InstallLinters Lint ValidatePackages
   ubuntu-latest:
     name: ubuntu-latest
     runs-on: ubuntu-latest
@@ -69,13 +53,8 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
-      - name: 'Run: Test, InstallLinters, Lint, Pack, ValidatePackages, Publish'
-        run: ./build.cmd Test InstallLinters Lint Pack ValidatePackages Publish
-        env:
-          NuGetApiKey: ${{ secrets.NUGET_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PackageOwner: ${{ vars.PACKAGE_OWNER }}
-          NuGetSource: ${{ vars.NUGET_SOURCE }}
+      - name: 'Run: Test, InstallLinters, Lint, ValidatePackages'
+        run: ./build.cmd Test InstallLinters Lint ValidatePackages
   macos-latest:
     name: macos-latest
     runs-on: macos-latest
@@ -90,10 +69,5 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
-      - name: 'Run: Test, InstallLinters, Lint, Pack, ValidatePackages, Publish'
-        run: ./build.cmd Test InstallLinters Lint Pack ValidatePackages Publish
-        env:
-          NuGetApiKey: ${{ secrets.NUGET_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PackageOwner: ${{ vars.PACKAGE_OWNER }}
-          NuGetSource: ${{ vars.NUGET_SOURCE }}
+      - name: 'Run: Test, InstallLinters, Lint, ValidatePackages'
+        run: ./build.cmd Test InstallLinters Lint ValidatePackages
