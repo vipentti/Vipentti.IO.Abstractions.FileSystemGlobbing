@@ -2,8 +2,8 @@
 // Distributed under the MIT License.
 // https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing/blob/main/LICENSE
 
-using Nuke.Common.Tooling;
 using System.ComponentModel;
+using Nuke.Common.Tooling;
 
 [TypeConverter(typeof(TypeConverter<Configuration>))]
 public class Configuration : Enumeration
