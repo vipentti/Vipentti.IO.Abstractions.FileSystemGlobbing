@@ -7,124 +7,123 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
 
-namespace Vipentti.IO.Abstractions.FileSystemGlobbing
+namespace Vipentti.IO.Abstractions.FileSystemGlobbing;
+
+/// <summary>
+/// Wraps <see cref="IDirectoryInfo" /> to be used with <see cref="Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase"/>
+/// </summary>
+public class DirectoryInfoGlobbingWrapper
+    : Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
 {
+    private readonly IFileSystem _fileSystem;
+    private readonly IDirectoryInfo _directoryInfo;
+    private readonly bool _isParentPath;
+
     /// <summary>
-    /// Wraps <see cref="IDirectoryInfo" /> to be used with <see cref="Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase"/>
+    /// Construct a new instance of <see cref="DirectoryInfoGlobbingWrapper" />
     /// </summary>
-    public class DirectoryInfoGlobbingWrapper
-        : Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
+    /// <param name="fileSystem">The filesystem</param>
+    /// <param name="directoryInfo">The directory</param>
+    public DirectoryInfoGlobbingWrapper(IFileSystem fileSystem, IDirectoryInfo directoryInfo)
+        : this(fileSystem, directoryInfo, isParentPath: false) { }
+
+    private DirectoryInfoGlobbingWrapper(
+        IFileSystem fileSystem,
+        IDirectoryInfo directoryInfo,
+        bool isParentPath
+    )
     {
-        private readonly IFileSystem _fileSystem;
-        private readonly IDirectoryInfo _directoryInfo;
-        private readonly bool _isParentPath;
+        _fileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem));
+        _directoryInfo =
+            directoryInfo ?? throw new ArgumentNullException(nameof(directoryInfo));
+        _isParentPath = isParentPath;
+    }
 
-        /// <summary>
-        /// Construct a new instance of <see cref="DirectoryInfoGlobbingWrapper" />
-        /// </summary>
-        /// <param name="fileSystem">The filesystem</param>
-        /// <param name="directoryInfo">The directory</param>
-        public DirectoryInfoGlobbingWrapper(IFileSystem fileSystem, IDirectoryInfo directoryInfo)
-            : this(fileSystem, directoryInfo, isParentPath: false) { }
+    /// <inheritdoc />
+    public override string Name => _isParentPath ? ".." : _directoryInfo.Name;
 
-        private DirectoryInfoGlobbingWrapper(
-            IFileSystem fileSystem,
-            IDirectoryInfo directoryInfo,
-            bool isParentPath
-        )
+    /// <inheritdoc />
+    public override string FullName => _directoryInfo.FullName;
+
+    /// <inheritdoc />
+    public override Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase? ParentDirectory =>
+        _directoryInfo.Parent is null
+            ? null
+            : new DirectoryInfoGlobbingWrapper(_fileSystem, _directoryInfo.Parent);
+
+    /// <inheritdoc />
+    public override IEnumerable<Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileSystemInfoBase> EnumerateFileSystemInfos()
+    {
+        if (_directoryInfo.Exists)
         {
-            _fileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem));
-            _directoryInfo =
-                directoryInfo ?? throw new ArgumentNullException(nameof(directoryInfo));
-            _isParentPath = isParentPath;
-        }
-
-        /// <inheritdoc />
-        public override string Name => _isParentPath ? ".." : _directoryInfo.Name;
-
-        /// <inheritdoc />
-        public override string FullName => _directoryInfo.FullName;
-
-        /// <inheritdoc />
-        public override Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase? ParentDirectory =>
-            _directoryInfo.Parent is null
-                ? null
-                : new DirectoryInfoGlobbingWrapper(_fileSystem, _directoryInfo.Parent);
-
-        /// <inheritdoc />
-        public override IEnumerable<Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileSystemInfoBase> EnumerateFileSystemInfos()
-        {
-            if (_directoryInfo.Exists)
+            IEnumerable<IFileSystemInfo> fileSystemInfos;
+            try
             {
-                IEnumerable<IFileSystemInfo> fileSystemInfos;
-                try
-                {
-                    fileSystemInfos = _directoryInfo.EnumerateFileSystemInfos(
-                        "*",
-                        SearchOption.TopDirectoryOnly
-                    );
-                }
-                catch (DirectoryNotFoundException)
-                {
-                    yield break;
-                }
-
-                foreach (var fileSystemInfo in fileSystemInfos)
-                {
-                    yield return fileSystemInfo switch
-                    {
-                        IDirectoryInfo directoryInfo
-                            => new DirectoryInfoGlobbingWrapper(_fileSystem, directoryInfo),
-                        IFileInfo fileInfo => new FileInfoGlobbingWrapper(_fileSystem, fileInfo),
-                        _
-                            => throw new InvalidOperationException(
-                                $"Unsupported {nameof(IFileSystemInfo)} {fileSystemInfo.GetType()}"
-                            ),
-                    };
-                }
-            }
-        }
-
-        /// <inheritdoc />
-        public override Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase? GetDirectory(
-            string path
-        )
-        {
-            var isParentPath = string.Equals(path, "..", StringComparison.Ordinal);
-
-            if (isParentPath)
-            {
-                return new DirectoryInfoGlobbingWrapper(
-                    _fileSystem,
-                    _fileSystem.DirectoryInfo.New(Path.Combine(_directoryInfo.FullName, path)),
-                    isParentPath
+                fileSystemInfos = _directoryInfo.EnumerateFileSystemInfos(
+                    "*",
+                    SearchOption.TopDirectoryOnly
                 );
             }
-            else
+            catch (DirectoryNotFoundException)
             {
-                var dirs = _directoryInfo.GetDirectories(path);
+                yield break;
+            }
 
-                return dirs switch
+            foreach (var fileSystemInfo in fileSystemInfos)
+            {
+                yield return fileSystemInfo switch
                 {
-                    { Length: 1 }
-                        => new DirectoryInfoGlobbingWrapper(_fileSystem, dirs[0], isParentPath),
-                    { Length: 0 } => null,
-                    // This shouldn't happen. The parameter name isn't supposed to contain wild card.
+                    IDirectoryInfo directoryInfo
+                        => new DirectoryInfoGlobbingWrapper(_fileSystem, directoryInfo),
+                    IFileInfo fileInfo => new FileInfoGlobbingWrapper(_fileSystem, fileInfo),
                     _
                         => throw new InvalidOperationException(
-                            $"More than one sub directories are found under {_directoryInfo.FullName} with name {path}."
+                            $"Unsupported {nameof(IFileSystemInfo)} {fileSystemInfo.GetType()}"
                         ),
                 };
             }
         }
-
-        /// <inheritdoc />
-        public override Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoBase GetFile(
-            string path
-        ) =>
-            new FileInfoGlobbingWrapper(
-                _fileSystem,
-                _fileSystem.FileInfo.New(Path.Combine(FullName, path))
-            );
     }
+
+    /// <inheritdoc />
+    public override Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase? GetDirectory(
+        string path
+    )
+    {
+        var isParentPath = string.Equals(path, "..", StringComparison.Ordinal);
+
+        if (isParentPath)
+        {
+            return new DirectoryInfoGlobbingWrapper(
+                _fileSystem,
+                _fileSystem.DirectoryInfo.New(Path.Combine(_directoryInfo.FullName, path)),
+                isParentPath
+            );
+        }
+        else
+        {
+            var dirs = _directoryInfo.GetDirectories(path);
+
+            return dirs switch
+            {
+                { Length: 1 }
+                    => new DirectoryInfoGlobbingWrapper(_fileSystem, dirs[0], isParentPath),
+                { Length: 0 } => null,
+                // This shouldn't happen. The parameter name isn't supposed to contain wild card.
+                _
+                    => throw new InvalidOperationException(
+                        $"More than one sub directories are found under {_directoryInfo.FullName} with name {path}."
+                    ),
+            };
+        }
+    }
+
+    /// <inheritdoc />
+    public override Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoBase GetFile(
+        string path
+    ) =>
+        new FileInfoGlobbingWrapper(
+            _fileSystem,
+            _fileSystem.FileInfo.New(Path.Combine(FullName, path))
+        );
 }

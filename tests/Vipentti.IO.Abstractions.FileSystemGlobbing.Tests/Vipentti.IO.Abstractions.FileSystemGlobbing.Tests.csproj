@@ -7,6 +7,9 @@
     <RootNamespace>Vipentti.IO.Abstractions.FileSystemGlobbing.Tests</RootNamespace>
     <IsPackable>false</IsPackable>
     <IsTestable>true</IsTestable>
+
+    <Nullable>enable</Nullable>
+    <LangVersion>11.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
