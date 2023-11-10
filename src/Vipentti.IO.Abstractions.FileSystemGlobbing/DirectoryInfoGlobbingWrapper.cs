@@ -12,7 +12,8 @@ namespace Vipentti.IO.Abstractions.FileSystemGlobbing
     /// <summary>
     /// Wraps <see cref="IDirectoryInfo" /> to be used with <see cref="Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase"/>
     /// </summary>
-    public class DirectoryInfoGlobbingWrapper : Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
+    public class DirectoryInfoGlobbingWrapper
+        : Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
     {
         private readonly IFileSystem _fileSystem;
         private readonly IDirectoryInfo _directoryInfo;
@@ -24,14 +25,17 @@ namespace Vipentti.IO.Abstractions.FileSystemGlobbing
         /// <param name="fileSystem">The filesystem</param>
         /// <param name="directoryInfo">The directory</param>
         public DirectoryInfoGlobbingWrapper(IFileSystem fileSystem, IDirectoryInfo directoryInfo)
-            : this(fileSystem, directoryInfo, isParentPath: false)
-        {
-        }
+            : this(fileSystem, directoryInfo, isParentPath: false) { }
 
-        private DirectoryInfoGlobbingWrapper(IFileSystem fileSystem, IDirectoryInfo directoryInfo, bool isParentPath)
+        private DirectoryInfoGlobbingWrapper(
+            IFileSystem fileSystem,
+            IDirectoryInfo directoryInfo,
+            bool isParentPath
+        )
         {
             _fileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem));
-            _directoryInfo = directoryInfo ?? throw new ArgumentNullException(nameof(directoryInfo));
+            _directoryInfo =
+                directoryInfo ?? throw new ArgumentNullException(nameof(directoryInfo));
             _isParentPath = isParentPath;
         }
 
@@ -43,7 +47,9 @@ namespace Vipentti.IO.Abstractions.FileSystemGlobbing
 
         /// <inheritdoc />
         public override Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase? ParentDirectory =>
-            _directoryInfo.Parent is null ? null : new DirectoryInfoGlobbingWrapper(_fileSystem, _directoryInfo.Parent);
+            _directoryInfo.Parent is null
+                ? null
+                : new DirectoryInfoGlobbingWrapper(_fileSystem, _directoryInfo.Parent);
 
         /// <inheritdoc />
         public override IEnumerable<Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileSystemInfoBase> EnumerateFileSystemInfos()
@@ -53,7 +59,10 @@ namespace Vipentti.IO.Abstractions.FileSystemGlobbing
                 IEnumerable<IFileSystemInfo> fileSystemInfos;
                 try
                 {
-                    fileSystemInfos = _directoryInfo.EnumerateFileSystemInfos("*", SearchOption.TopDirectoryOnly);
+                    fileSystemInfos = _directoryInfo.EnumerateFileSystemInfos(
+                        "*",
+                        SearchOption.TopDirectoryOnly
+                    );
                 }
                 catch (DirectoryNotFoundException)
                 {
@@ -64,16 +73,22 @@ namespace Vipentti.IO.Abstractions.FileSystemGlobbing
                 {
                     yield return fileSystemInfo switch
                     {
-                        IDirectoryInfo directoryInfo => new DirectoryInfoGlobbingWrapper(_fileSystem, directoryInfo),
+                        IDirectoryInfo directoryInfo
+                            => new DirectoryInfoGlobbingWrapper(_fileSystem, directoryInfo),
                         IFileInfo fileInfo => new FileInfoGlobbingWrapper(_fileSystem, fileInfo),
-                        _ => throw new InvalidOperationException($"Unsupported {nameof(IFileSystemInfo)} {fileSystemInfo.GetType()}"),
+                        _
+                            => throw new InvalidOperationException(
+                                $"Unsupported {nameof(IFileSystemInfo)} {fileSystemInfo.GetType()}"
+                            ),
                     };
                 }
             }
         }
 
         /// <inheritdoc />
-        public override Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase? GetDirectory(string path)
+        public override Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase? GetDirectory(
+            string path
+        )
         {
             var isParentPath = string.Equals(path, "..", StringComparison.Ordinal);
 
@@ -82,7 +97,8 @@ namespace Vipentti.IO.Abstractions.FileSystemGlobbing
                 return new DirectoryInfoGlobbingWrapper(
                     _fileSystem,
                     _fileSystem.DirectoryInfo.New(Path.Combine(_directoryInfo.FullName, path)),
-                    isParentPath);
+                    isParentPath
+                );
             }
             else
             {
@@ -90,16 +106,25 @@ namespace Vipentti.IO.Abstractions.FileSystemGlobbing
 
                 return dirs switch
                 {
-                    { Length: 1 } => new DirectoryInfoGlobbingWrapper(_fileSystem, dirs[0], isParentPath),
+                    { Length: 1 }
+                        => new DirectoryInfoGlobbingWrapper(_fileSystem, dirs[0], isParentPath),
                     { Length: 0 } => null,
                     // This shouldn't happen. The parameter name isn't supposed to contain wild card.
-                    _ => throw new InvalidOperationException($"More than one sub directories are found under {_directoryInfo.FullName} with name {path}."),
+                    _
+                        => throw new InvalidOperationException(
+                            $"More than one sub directories are found under {_directoryInfo.FullName} with name {path}."
+                        ),
                 };
             }
         }
 
         /// <inheritdoc />
-        public override Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoBase GetFile(string path)
-            => new FileInfoGlobbingWrapper(_fileSystem, _fileSystem.FileInfo.New(Path.Combine(FullName, path)));
+        public override Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileInfoBase GetFile(
+            string path
+        ) =>
+            new FileInfoGlobbingWrapper(
+                _fileSystem,
+                _fileSystem.FileInfo.New(Path.Combine(FullName, path))
+            );
     }
 }
