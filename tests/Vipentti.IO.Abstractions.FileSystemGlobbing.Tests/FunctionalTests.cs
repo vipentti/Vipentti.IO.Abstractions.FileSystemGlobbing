@@ -20,21 +20,25 @@ namespace Vipentti.IO.Abstractions.FileSystemGlobbing.Tests
 
             if (OperatingSystem.IsWindows())
             {
-                fileSystem = new MockFileSystem(new Dictionary<string, MockFileData>
-                {
-                    { @"c:\file_at_root", new MockFileData("") },
-                    { @"c:\nested\file", new MockFileData("") },
-                    { @"c:\nested\inside\nested\file", new MockFileData("") },
-                });
+                fileSystem = new MockFileSystem(
+                    new Dictionary<string, MockFileData>
+                    {
+                        { @"c:\file_at_root", new MockFileData("") },
+                        { @"c:\nested\file", new MockFileData("") },
+                        { @"c:\nested\inside\nested\file", new MockFileData("") },
+                    }
+                );
             }
             else
             {
-                fileSystem = new MockFileSystem(new Dictionary<string, MockFileData>()
-                {
-                    {"/file_at_root", new MockFileData("") },
-                    {"/nested/file", new MockFileData("") },
-                    {"/nested/inside/nested/file", new MockFileData("") },
-                });
+                fileSystem = new MockFileSystem(
+                    new Dictionary<string, MockFileData>()
+                    {
+                        { "/file_at_root", new MockFileData("") },
+                        { "/nested/file", new MockFileData("") },
+                        { "/nested/inside/nested/file", new MockFileData("") },
+                    }
+                );
             }
 
             var matcher = new Matcher();
@@ -46,11 +50,11 @@ namespace Vipentti.IO.Abstractions.FileSystemGlobbing.Tests
 
             var paths = result.Files.Select(file => file.Path).ToArray();
 
-            paths.Should().BeEquivalentTo(new[] {
-                "file_at_root",
-                "nested/file",
-                "nested/inside/nested/file",
-            });
+            paths
+                .Should()
+                .BeEquivalentTo(
+                    new[] { "file_at_root", "nested/file", "nested/inside/nested/file", }
+                );
         }
     }
 }
