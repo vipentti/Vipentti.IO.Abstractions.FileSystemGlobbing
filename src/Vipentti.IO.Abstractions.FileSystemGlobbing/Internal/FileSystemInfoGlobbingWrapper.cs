@@ -4,9 +4,9 @@
 
 using System.IO.Abstractions;
 
-namespace Vipentti.IO.Abstractions.FileSystemGlobbing;
+namespace Vipentti.IO.Abstractions.FileSystemGlobbing.Internal;
 
-internal class FileSystemInfoGlobbingWrapper
+internal sealed class FileSystemInfoGlobbingWrapper
     : Microsoft.Extensions.FileSystemGlobbing.Abstractions.FileSystemInfoBase
 {
     private readonly IFileSystem _fileSystem;

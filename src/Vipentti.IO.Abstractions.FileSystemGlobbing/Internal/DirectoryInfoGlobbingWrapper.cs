@@ -7,12 +7,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
 
-namespace Vipentti.IO.Abstractions.FileSystemGlobbing;
+namespace Vipentti.IO.Abstractions.FileSystemGlobbing.Internal;
 
 /// <summary>
 /// Wraps <see cref="IDirectoryInfo" /> to be used with <see cref="Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase"/>
 /// </summary>
-internal class DirectoryInfoGlobbingWrapper
+internal sealed class DirectoryInfoGlobbingWrapper
     : Microsoft.Extensions.FileSystemGlobbing.Abstractions.DirectoryInfoBase
 {
     private readonly IFileSystem _fileSystem;
@@ -75,10 +75,7 @@ internal class DirectoryInfoGlobbingWrapper
                     IDirectoryInfo directoryInfo
                         => new DirectoryInfoGlobbingWrapper(_fileSystem, directoryInfo),
                     IFileInfo fileInfo => new FileInfoGlobbingWrapper(_fileSystem, fileInfo),
-                    _
-                        => throw new InvalidOperationException(
-                            $"Unsupported {nameof(IFileSystemInfo)} {fileSystemInfo.GetType()}"
-                        ),
+                    var it => new FileSystemInfoGlobbingWrapper(_fileSystem, it),
                 };
             }
         }
