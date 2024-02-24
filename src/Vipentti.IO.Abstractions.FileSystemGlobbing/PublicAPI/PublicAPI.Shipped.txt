@@ -1,0 +1,6 @@
+#nullable enable
+static Vipentti.IO.Abstractions.FileSystemGlobbing.MatcherExtensions.Execute(this Microsoft.Extensions.FileSystemGlobbing.Matcher! matcher, System.IO.Abstractions.IFileSystem! fileSystem, string! directoryPath) -> Microsoft.Extensions.FileSystemGlobbing.PatternMatchingResult!
+static Vipentti.IO.Abstractions.FileSystemGlobbing.MatcherExtensions.Execute(this Microsoft.Extensions.FileSystemGlobbing.Matcher! matcher, System.IO.Abstractions.IFileSystem! fileSystem, System.IO.Abstractions.IDirectoryInfo! directoryInfo) -> Microsoft.Extensions.FileSystemGlobbing.PatternMatchingResult!
+static Vipentti.IO.Abstractions.FileSystemGlobbing.MatcherExtensions.GetResultsInFullPath(this Microsoft.Extensions.FileSystemGlobbing.Matcher! matcher, System.IO.Abstractions.IFileSystem! fileSystem, string! directoryPath) -> System.Collections.Generic.IEnumerable<string!>!
+static Vipentti.IO.Abstractions.FileSystemGlobbing.MatcherExtensions.GetResultsInFullPath(this Microsoft.Extensions.FileSystemGlobbing.Matcher! matcher, System.IO.Abstractions.IFileSystem! fileSystem, System.IO.Abstractions.IDirectoryInfo! directoryInfo) -> System.Collections.Generic.IEnumerable<string!>!
+Vipentti.IO.Abstractions.FileSystemGlobbing.MatcherExtensions
