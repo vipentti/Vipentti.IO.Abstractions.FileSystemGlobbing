@@ -10,10 +10,9 @@
     <!-- Build -->
     <PropertyGroup>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-         <!-- Enable linter -->
+        <!-- Enable linter -->
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 
-         <!-- Enable linter -->
         <WarnOnPackingNonPackableProject>true</WarnOnPackingNonPackableProject>
     </PropertyGroup>
 
@@ -24,7 +23,7 @@
         <IsPublishable>false</IsPublishable>
 
         <Authors>Ville Penttinen</Authors>
-        <Copyright>Copyright © 2021-2023 Ville Penttinen</Copyright>
+        <Copyright>Copyright © 2021-2024 Ville Penttinen</Copyright>
         <PackageProjectUrl>https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing</PackageProjectUrl>
         <RepositoryUrl>https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
