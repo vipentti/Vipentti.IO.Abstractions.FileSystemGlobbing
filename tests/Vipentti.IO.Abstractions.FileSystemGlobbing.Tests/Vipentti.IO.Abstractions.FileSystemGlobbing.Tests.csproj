@@ -9,7 +9,7 @@
     <IsTestable>true</IsTestable>
 
     <Nullable>enable</Nullable>
-    <LangVersion>11.0</LangVersion>
+    <LangVersion>12.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
