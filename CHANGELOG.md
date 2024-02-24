@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [vNext]
+
+## [1.0.4] / 2024-02-24
 - Document current PublicAPI to keep track of breaking changes
 - Upgrade TestableIO.System.IO.Abstractions packages
 
@@ -21,7 +23,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] / 2021-05-23
 - Initial release
 
-[vNext]: https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing/compare/1.0.3...HEAD
+[vNext]: https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing/compare/1.0.4...HEAD
+[1.0.4]: https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing/compare/1.0.0...1.0.1
