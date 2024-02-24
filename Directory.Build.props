@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <!-- General -->
     <PropertyGroup>
-        <LangVersion>9.0</LangVersion>
+        <LangVersion>12.0</LangVersion>
         <Nullable>enable</Nullable>
         <Features>strict</Features>
     </PropertyGroup>
@@ -14,6 +14,10 @@
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 
         <WarnOnPackingNonPackableProject>true</WarnOnPackingNonPackableProject>
+
+        <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <AnalysisLevel>latest</AnalysisLevel>
+        <AnalysisMode>All</AnalysisMode>
     </PropertyGroup>
 
     <!-- Packaging -->

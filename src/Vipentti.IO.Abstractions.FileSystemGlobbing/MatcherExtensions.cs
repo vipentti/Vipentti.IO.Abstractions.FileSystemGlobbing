@@ -7,6 +7,7 @@ using System.IO;
 using System.IO.Abstractions;
 using System.Linq;
 using Microsoft.Extensions.FileSystemGlobbing;
+using Vipentti.IO.Abstractions.FileSystemGlobbing.Internal;
 
 namespace Vipentti.IO.Abstractions.FileSystemGlobbing;
 
@@ -26,14 +27,27 @@ public static class MatcherExtensions
         this Matcher matcher,
         IFileSystem fileSystem,
         string directoryPath
-    ) => Execute(matcher, fileSystem, fileSystem.DirectoryInfo.New(directoryPath));
+    )
+    {
+        ThrowHelpers.ThrowIfNull(matcher);
+        ThrowHelpers.ThrowIfNull(fileSystem);
+
+        return Execute(matcher, fileSystem, fileSystem.DirectoryInfo.New(directoryPath));
+    }
 
     /// <inheritdoc cref="Execute(Matcher, IFileSystem, string)"/>
     public static PatternMatchingResult Execute(
         this Matcher matcher,
         IFileSystem fileSystem,
         IDirectoryInfo directoryInfo
-    ) => matcher.Execute(new DirectoryInfoGlobbingWrapper(fileSystem, directoryInfo));
+    )
+    {
+        ThrowHelpers.ThrowIfNull(matcher);
+        ThrowHelpers.ThrowIfNull(fileSystem);
+        ThrowHelpers.ThrowIfNull(directoryInfo);
+
+        return matcher.Execute(new DirectoryInfoGlobbingWrapper(fileSystem, directoryInfo));
+    }
 
     /// <inheritdoc cref="GetResultsInFullPath(Matcher, IFileSystem, string)"/>
     public static IEnumerable<string> GetResultsInFullPath(
@@ -42,6 +56,10 @@ public static class MatcherExtensions
         IDirectoryInfo directoryInfo
     )
     {
+        ThrowHelpers.ThrowIfNull(matcher);
+        ThrowHelpers.ThrowIfNull(fileSystem);
+        ThrowHelpers.ThrowIfNull(directoryInfo);
+
         var matches = Execute(matcher, fileSystem, directoryInfo).Files;
         return matches
             .Select(match => Path.GetFullPath(Path.Combine(directoryInfo.FullName, match.Path)))
@@ -59,5 +77,15 @@ public static class MatcherExtensions
         this Matcher matcher,
         IFileSystem fileSystem,
         string directoryPath
-    ) => GetResultsInFullPath(matcher, fileSystem, fileSystem.DirectoryInfo.New(directoryPath));
+    )
+    {
+        ThrowHelpers.ThrowIfNull(matcher);
+        ThrowHelpers.ThrowIfNull(fileSystem);
+
+        return GetResultsInFullPath(
+            matcher,
+            fileSystem,
+            fileSystem.DirectoryInfo.New(directoryPath)
+        );
+    }
 }

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <AssemblyName>Vipentti.IO.Abstractions.FileSystemGlobbing</AssemblyName>
     <RootNamespace>Vipentti.IO.Abstractions.FileSystemGlobbing</RootNamespace>
-    <Description>Additional abstractions to combine System.IO.Abstractions and Microsoft.Extensions.FileSystemGlobbing</Description>
+    <Description>Additional abstractions to combine TestableIO.System.IO.Abstractions and Microsoft.Extensions.FileSystemGlobbing</Description>
     <TargetFrameworks>net8.0;net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <IsPackable>true</IsPackable>
     <PackageProjectUrl>https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing</PackageProjectUrl>
@@ -28,7 +28,7 @@
     <UseReproducibleBuild Condition="'$(UseReproducibleBuild)'==''">false</UseReproducibleBuild>
 
     <Nullable>enable</Nullable>
-    <LangVersion>11.0</LangVersion>
+    <LangVersion>12.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
