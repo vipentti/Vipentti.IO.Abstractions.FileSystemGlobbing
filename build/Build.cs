@@ -27,6 +27,7 @@ namespace build;
     }
     , InvokedTargets = new[]
     {
+        nameof(IUseLocalDotNetTools.RestoreLocalTools),
         nameof(ITest.Test),
         nameof(IUseLinters.InstallLinters),
         nameof(IUseLinters.Lint),
@@ -59,7 +60,14 @@ class Build : StandardNukeBuild, IUseCsharpier
         From<IUseDotNetFormat>().Linter,
         From<IUseCsharpier>().Linter,
     };
-    bool IUseCsharpier.UseGlobalTool { get; } = true;
+
+    public override IEnumerable<IProvideFormatter> Formatters => new[]
+    {
+        From<IUseDotNetFormat>().Formatter,
+        From<IUseCsharpier>().Formatter,
+    };
+
+    bool IUseCsharpier.UseGlobalTool { get; } = false;
 
     public override bool SignReleaseTags { get; } = true;
 
