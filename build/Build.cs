@@ -1,4 +1,4 @@
-﻿// Copyright 2021-2023 Ville Penttinen
+﻿// Copyright 2021-2024 Ville Penttinen
 // Distributed under the MIT License.
 // https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing/blob/main/LICENSE
 
