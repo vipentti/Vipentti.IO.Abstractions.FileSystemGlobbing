@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [vNext]
+
+## [1.0.5] / 2026-04-28
 - Add .NET 10 support
 
 ## [1.0.4] / 2024-02-24
@@ -24,7 +26,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [1.0.0] / 2021-05-23
 - Initial release
 
-[vNext]: https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing/compare/1.0.4...HEAD
+[vNext]: https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing/compare/1.0.5...HEAD
+[1.0.5]: https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing/compare/1.0.4...1.0.5
 [1.0.4]: https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing/compare/1.0.1...1.0.2
