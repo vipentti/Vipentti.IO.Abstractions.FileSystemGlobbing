@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net10.0;net8.0;net9.0;net48</TargetFrameworks>
+    <TargetFrameworks>net10.0;net8.0;net9.0</TargetFrameworks>
     <Description>Unit tests</Description>
     <AssemblyName>Vipentti.IO.Abstractions.FileSystemGlobbing.Tests</AssemblyName>
     <RootNamespace>Vipentti.IO.Abstractions.FileSystemGlobbing.Tests</RootNamespace>
