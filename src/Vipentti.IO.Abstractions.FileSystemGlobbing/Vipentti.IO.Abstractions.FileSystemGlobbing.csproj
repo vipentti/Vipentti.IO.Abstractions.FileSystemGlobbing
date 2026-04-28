@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <AssemblyName>Vipentti.IO.Abstractions.FileSystemGlobbing</AssemblyName>
     <RootNamespace>Vipentti.IO.Abstractions.FileSystemGlobbing</RootNamespace>
@@ -60,5 +59,4 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
 </Project>

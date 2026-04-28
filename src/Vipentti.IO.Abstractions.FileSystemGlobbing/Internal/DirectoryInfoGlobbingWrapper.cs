@@ -72,8 +72,10 @@ internal sealed class DirectoryInfoGlobbingWrapper
             {
                 yield return fileSystemInfo switch
                 {
-                    IDirectoryInfo directoryInfo
-                        => new DirectoryInfoGlobbingWrapper(_fileSystem, directoryInfo),
+                    IDirectoryInfo directoryInfo => new DirectoryInfoGlobbingWrapper(
+                        _fileSystem,
+                        directoryInfo
+                    ),
                     IFileInfo fileInfo => new FileInfoGlobbingWrapper(_fileSystem, fileInfo),
                     var it => new FileSystemInfoGlobbingWrapper(_fileSystem, it),
                 };
@@ -102,14 +104,16 @@ internal sealed class DirectoryInfoGlobbingWrapper
 
             return dirs switch
             {
-                { Length: 1 }
-                    => new DirectoryInfoGlobbingWrapper(_fileSystem, dirs[0], isParentPath),
+                { Length: 1 } => new DirectoryInfoGlobbingWrapper(
+                    _fileSystem,
+                    dirs[0],
+                    isParentPath
+                ),
                 { Length: 0 } => null,
                 // This shouldn't happen. The parameter name isn't supposed to contain wild card.
-                _
-                    => throw new InvalidOperationException(
-                        $"More than one sub directories are found under {_directoryInfo.FullName} with name {path}."
-                    ),
+                _ => throw new InvalidOperationException(
+                    $"More than one sub directories are found under {_directoryInfo.FullName} with name {path}."
+                ),
             };
         }
     }

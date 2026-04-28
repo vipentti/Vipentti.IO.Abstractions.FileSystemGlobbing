@@ -1,40 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <!-- General -->
-    <PropertyGroup>
-        <LangVersion>14.0</LangVersion>
-        <Nullable>enable</Nullable>
-        <Features>strict</Features>
-    </PropertyGroup>
+<Project
+  ToolsVersion="4.0"
+  DefaultTargets="Build"
+  xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+>
+  <!-- General -->
+  <PropertyGroup>
+    <LangVersion>14.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <Features>strict</Features>
+  </PropertyGroup>
 
-    <!-- Build -->
-    <PropertyGroup>
-        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-        <!-- Enable linter -->
-        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  <!-- Build -->
+  <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <!-- Enable linter -->
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 
-        <WarnOnPackingNonPackableProject>true</WarnOnPackingNonPackableProject>
+    <WarnOnPackingNonPackableProject>true</WarnOnPackingNonPackableProject>
 
-        <EnableNETAnalyzers>true</EnableNETAnalyzers>
-        <AnalysisLevel>latest</AnalysisLevel>
-        <AnalysisMode>All</AnalysisMode>
-    </PropertyGroup>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisMode>All</AnalysisMode>
+  </PropertyGroup>
 
-    <!-- Packaging -->
-    <PropertyGroup>
-        <!-- Enable packaging on a per-project basis. -->
-        <IsPackable>false</IsPackable>
-        <IsPublishable>false</IsPublishable>
+  <!-- Packaging -->
+  <PropertyGroup>
+    <!-- Enable packaging on a per-project basis. -->
+    <IsPackable>false</IsPackable>
+    <IsPublishable>false</IsPublishable>
 
-        <Authors>Ville Penttinen</Authors>
-        <Copyright>Copyright © 2021-2024 Ville Penttinen</Copyright>
-        <PackageProjectUrl>https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
-        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <Authors>Ville Penttinen</Authors>
+    <Copyright>Copyright © 2021-2024 Ville Penttinen</Copyright>
+    <PackageProjectUrl>https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/vipentti/Vipentti.IO.Abstractions.FileSystemGlobbing</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
 
-        <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
-        <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    </PropertyGroup>
+    <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
 </Project>

@@ -55,7 +55,7 @@ public class FunctionalTests
 
         paths
             .Should()
-            .BeEquivalentTo(new[] { "file_at_root", "nested/file", "nested/inside/nested/file", });
+            .BeEquivalentTo(new[] { "file_at_root", "nested/file", "nested/inside/nested/file" });
     }
 
     [Fact]
@@ -105,14 +105,12 @@ public class FunctionalTests
 
         sorted
             .Should()
-            .BeEquivalentTo(
-                [
-                    root.PathCombine("file1.txt"),
-                    root.PathCombine("nested/file2.txt"),
-                    root.PathCombine("nested/nested2/file3.txt"),
-                    root.PathCombine("nested1/nested2/nested3/file4.txt"),
-                ]
-            );
+            .BeEquivalentTo([
+                root.PathCombine("file1.txt"),
+                root.PathCombine("nested/file2.txt"),
+                root.PathCombine("nested/nested2/file3.txt"),
+                root.PathCombine("nested1/nested2/nested3/file4.txt"),
+            ]);
     }
 
     [Fact]

@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFrameworks>net10.0;net8.0;net9.0;net48</TargetFrameworks>
     <Description>Unit tests</Description>
@@ -30,5 +29,4 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Vipentti.IO.Abstractions.FileSystemGlobbing\Vipentti.IO.Abstractions.FileSystemGlobbing.csproj" />
   </ItemGroup>
-
 </Project>
