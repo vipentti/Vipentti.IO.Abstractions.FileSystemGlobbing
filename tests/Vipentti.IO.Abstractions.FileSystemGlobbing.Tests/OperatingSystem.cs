@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace Vipentti.IO.Abstractions.FileSystemGlobbing.Tests;
 
-public static class OperatingSystem
+internal static class OperatingSystem
 {
     public static bool IsWindows() => RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
 
